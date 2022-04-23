@@ -12,6 +12,7 @@ import java.util.Date;
 @MappedSuperclass
 @Data
 public abstract class BaseEntity implements Serializable {
+
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
