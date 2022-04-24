@@ -18,7 +18,7 @@ public class User extends BaseEntity{
     private Long id;
 
     @Column(name = "uname",length = 100,unique = true)
-    private String username;
+    private String userName;
 
     @Column(name = "name_surname",length = 50)
     private String nameSurname;
