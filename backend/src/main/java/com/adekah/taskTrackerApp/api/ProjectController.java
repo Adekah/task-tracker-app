@@ -24,7 +24,7 @@ public class ProjectController {
         try {
             ProjectDto projectDto = projectService.getById(id);
             return ResponseEntity.ok(projectDto);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw e;
         }
 

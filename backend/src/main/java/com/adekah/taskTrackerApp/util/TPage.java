@@ -14,12 +14,12 @@ public class TPage<T> {
     private Long totalElements;
     private List<T> content;
 
-    public void setStat(Page page,List<T>list){
-        this.number=page.getNumber();
-        this.size=page.getSize();
-        this.sort=page.getSort();
-        this.totalElements= page.getTotalElements();
-        this.totalPages=page.getTotalPages();
-        this.content=list;
+    public void setStat(Page page, List<T> list) {
+        this.number = page.getNumber();
+        this.size = page.getSize();
+        this.sort = page.getSort();
+        this.totalElements = page.getTotalElements();
+        this.totalPages = page.getTotalPages();
+        this.content = list;
     }
 }
