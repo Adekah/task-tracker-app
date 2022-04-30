@@ -13,23 +13,27 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProjectServicelmplementation implements ProjectService {
+public class ProjectServiceImplementation implements ProjectService {
 
     private final ProjectRepository projectRepository;
     private final ModelMapper modelMapper;
 
-    public ProjectServicelmplementation(ProjectRepository projectRepository, ModelMapper modelMapper) {
+    public ProjectServiceImplementation(ProjectRepository projectRepository, ModelMapper modelMapper) {
         this.projectRepository = projectRepository;
 
         this.modelMapper = modelMapper;
     }
 
     @Override
-    public Project save(Project project) {
-        if (project.getProjectCode() == null) {
-            throw new IllegalArgumentException("Project Code Cannot be null!");
+    public ProjectDto save(ProjectDto project) {
+        Project projectCheck = projectRepository.getByProjectCode(project.getProjectCode());
+        if (projectCheck != null){
+            throw new IllegalArgumentException("project code already exist");
         }
-        return projectRepository.save(project);
+        Project p =modelMapper.map(project,Project.class );
+        p=projectRepository.save(p);
+        project.setId(p.getId());
+        return project;
     }
 
     @Override
@@ -41,7 +45,7 @@ public class ProjectServicelmplementation implements ProjectService {
     }
 
     @Override
-    public List<Project> getByProjectCode(String projectCode) {
+    public Project getByProjectCode(String projectCode) {
         return null;
     }
 
