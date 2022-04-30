@@ -5,6 +5,8 @@ import com.adekah.taskTrackerApp.service.implementation.ProjectServiceImplementa
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/project")
 public class ProjectController {
@@ -16,13 +18,23 @@ public class ProjectController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProjectDto> getById(@PathVariable("id") Long id) {
+    public ResponseEntity<ProjectDto> getById(@PathVariable(value = "id", required = true) Long id) {
         ProjectDto projectDto = projectServiceImplementation.getById(id);
         return ResponseEntity.ok(projectDto);
     }
 
     @PostMapping
-    public ResponseEntity<ProjectDto> createProject(@RequestBody ProjectDto projectDto){
+    public ResponseEntity<ProjectDto> createProject(@Valid @RequestBody ProjectDto projectDto) {
         return ResponseEntity.ok(projectServiceImplementation.save(projectDto));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProjectDto> updateProject(@PathVariable(value = "id", required = true) Long id, @Valid @RequestBody ProjectDto projectDto) {
+        return ResponseEntity.ok(projectServiceImplementation.update(id, projectDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> deleteProject(@PathVariable(value = "id", required = true) Long id) {
+        return ResponseEntity.ok(projectServiceImplementation.delete(id));
     }
 }

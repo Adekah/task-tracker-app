@@ -4,7 +4,6 @@ import com.adekah.taskTrackerApp.dto.ProjectDto;
 import com.adekah.taskTrackerApp.entity.Project;
 import com.adekah.taskTrackerApp.repository.ProjectRepository;
 import com.adekah.taskTrackerApp.service.ProjectService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,11 +26,11 @@ public class ProjectServiceImplementation implements ProjectService {
     @Override
     public ProjectDto save(ProjectDto project) {
         Project projectCheck = projectRepository.getByProjectCode(project.getProjectCode());
-        if (projectCheck != null){
+        if (projectCheck != null) {
             throw new IllegalArgumentException("project code already exist");
         }
-        Project p =modelMapper.map(project,Project.class );
-        p=projectRepository.save(p);
+        Project p = modelMapper.map(project, Project.class);
+        p = projectRepository.save(p);
         project.setId(p.getId());
         return project;
     }
@@ -62,5 +61,26 @@ public class ProjectServiceImplementation implements ProjectService {
     @Override
     public Boolean delete(Project project) {
         return null;
+    }
+
+    public Boolean delete(Long id) {
+        projectRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public ProjectDto update(Long id, ProjectDto projectDto) {
+        Project projectDB = projectRepository.getById(id);
+        if (projectDB == null) {
+            throw new IllegalArgumentException("project not found ID: " + id);
+        }
+        Project projectCheck = projectRepository.getByProjectCodeAndIdNot(projectDto.getProjectCode(), id);
+        if (projectCheck != null) {
+            throw new IllegalArgumentException("Project Code already Exist");
+        }
+        projectDB.setProjectCode(projectDto.getProjectCode());
+        projectDB.setProjectName(projectDto.getProjectName());
+        projectRepository.save(projectDB);
+        return modelMapper.map(projectDB, ProjectDto.class);
     }
 }

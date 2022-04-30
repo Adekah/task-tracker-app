@@ -2,8 +2,6 @@ package com.adekah.taskTrackerApp.service;
 
 import com.adekah.taskTrackerApp.dto.ProjectDto;
 import com.adekah.taskTrackerApp.entity.Project;
-import com.adekah.taskTrackerApp.entity.TaskHistory;
-import com.adekah.taskTrackerApp.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -22,4 +20,6 @@ public interface ProjectService {
     Page<Project> getAllPageable(Pageable pageable);
 
     Boolean delete(Project project);
+
+    ProjectDto update(Long id, ProjectDto projectDto);
 }
