@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 
 @Service
-public class TaskServicelmplementation implements TaskService {
+public class TaskServiceImplementation implements TaskService {
     private final TaskRepository taskRepository;
     private final ModelMapper modelMapper;
 
-    public TaskServicelmplementation(TaskRepository taskRepository, ModelMapper modelMapper) {
+    public TaskServiceImplementation(TaskRepository taskRepository, ModelMapper modelMapper) {
         this.taskRepository = taskRepository;
         this.modelMapper = modelMapper;
     }
@@ -36,7 +36,7 @@ public class TaskServicelmplementation implements TaskService {
 
     @Override
     public TaskDto getById(Long id) {
-        TaskDto task = modelMapper.map(taskRepository.getById(id), TaskDto.class);
+        TaskDto task = modelMapper.map(taskRepository.getOne(id), TaskDto.class);
         return task;
 
     }

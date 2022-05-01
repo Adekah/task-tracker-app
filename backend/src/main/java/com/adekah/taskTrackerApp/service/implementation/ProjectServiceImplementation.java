@@ -38,7 +38,7 @@ public class ProjectServiceImplementation implements ProjectService {
     @Override
     public ProjectDto getById(Long id) {
 
-        Project p = projectRepository.getById(id);
+        Project p = projectRepository.getOne(id);
         return modelMapper.map(p, ProjectDto.class);
 
     }
@@ -66,7 +66,7 @@ public class ProjectServiceImplementation implements ProjectService {
 
     @Override
     public ProjectDto update(Long id, ProjectDto projectDto) {
-        Project projectDB = projectRepository.getById(id);
+        Project projectDB = projectRepository.getOne(id);
         if (projectDB == null) {
             throw new IllegalArgumentException("project not found ID: " + id);
         }

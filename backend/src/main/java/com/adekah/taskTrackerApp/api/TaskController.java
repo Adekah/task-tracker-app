@@ -3,7 +3,7 @@ package com.adekah.taskTrackerApp.api;
 
 
 import com.adekah.taskTrackerApp.dto.TaskDto;
-import com.adekah.taskTrackerApp.service.implementation.TaskServicelmplementation;
+import com.adekah.taskTrackerApp.service.implementation.TaskServiceImplementation;
 import com.adekah.taskTrackerApp.util.ApiPaths;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +13,9 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(ApiPaths.TaskController.CTRL)
 public class TaskController {
-    private final TaskServicelmplementation taskServicelmplementation ;
+    private final TaskServiceImplementation taskServicelmplementation ;
 
-    public TaskController(TaskServicelmplementation taskServicelmplementation) {
+    public TaskController(TaskServiceImplementation taskServicelmplementation) {
         this.taskServicelmplementation = taskServicelmplementation;
     }
 

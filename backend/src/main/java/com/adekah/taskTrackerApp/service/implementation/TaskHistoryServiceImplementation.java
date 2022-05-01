@@ -8,10 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TaskHistoryServicelmplementation implements TaskHistoryService {
+public class TaskHistoryServiceImplementation implements TaskHistoryService {
     private final TaskHistoryRepository taskHistoryRepository;
 
-    public TaskHistoryServicelmplementation(TaskHistoryRepository taskHistoryRepository) {
+    public TaskHistoryServiceImplementation(TaskHistoryRepository taskHistoryRepository) {
         this.taskHistoryRepository = taskHistoryRepository;
     }
 
@@ -28,7 +28,7 @@ public class TaskHistoryServicelmplementation implements TaskHistoryService {
 
     @Override
     public TaskHistory getById(Long id) {
-        return taskHistoryRepository.getById(id);
+        return taskHistoryRepository.getOne(id);
     }
 
     @Override
