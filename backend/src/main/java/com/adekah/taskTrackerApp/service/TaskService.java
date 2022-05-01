@@ -14,5 +14,7 @@ public interface TaskService {
 
     TPage<TaskDto> getAllPageable(Pageable pageable);
 
-    Boolean delete(TaskDto task);
+    Boolean delete(Long id);
+
+    TaskDto update(Long id, TaskDto taskDto);
 }

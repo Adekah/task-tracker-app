@@ -31,11 +31,14 @@ public class TaskServicelmplementation implements TaskService {
         Task taskDb = modelMapper.map(task, Task.class);
         taskDb = taskRepository.save(taskDb);
         return modelMapper.map(taskDb, TaskDto.class);
+        //insert into task (id,description,date) values(9999,'Test',now());
     }
 
     @Override
     public TaskDto getById(Long id) {
-        return null;
+        TaskDto task = modelMapper.map(taskRepository.getById(id), TaskDto.class);
+        return task;
+
     }
 
     @Override
@@ -48,7 +51,15 @@ public class TaskServicelmplementation implements TaskService {
     }
 
     @Override
-    public Boolean delete(TaskDto task) {
+    public Boolean delete(Long id) {
+        taskRepository.deleteById(id);
+        return true;
+
+    }
+
+    @Override
+    public TaskDto update(Long id, TaskDto taskDto) {
         return null;
     }
+
 }

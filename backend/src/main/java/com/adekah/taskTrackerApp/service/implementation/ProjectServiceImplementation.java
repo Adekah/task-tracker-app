@@ -59,10 +59,6 @@ public class ProjectServiceImplementation implements ProjectService {
     }
 
     @Override
-    public Boolean delete(Project project) {
-        return null;
-    }
-
     public Boolean delete(Long id) {
         projectRepository.deleteById(id);
         return true;

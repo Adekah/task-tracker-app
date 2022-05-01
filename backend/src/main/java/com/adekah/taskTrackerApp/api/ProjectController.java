@@ -2,13 +2,14 @@ package com.adekah.taskTrackerApp.api;
 
 import com.adekah.taskTrackerApp.dto.ProjectDto;
 import com.adekah.taskTrackerApp.service.implementation.ProjectServiceImplementation;
+import com.adekah.taskTrackerApp.util.ApiPaths;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/project")
+@RequestMapping(ApiPaths.ProjectController.CTRL)
 public class ProjectController {
     private final ProjectServiceImplementation projectServiceImplementation;
 
