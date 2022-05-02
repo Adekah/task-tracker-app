@@ -3,8 +3,10 @@ package com.adekah.taskTrackerApp.api;
 import com.adekah.taskTrackerApp.dto.ProjectDto;
 import com.adekah.taskTrackerApp.service.implementation.ProjectServiceImplementation;
 import com.adekah.taskTrackerApp.util.ApiPaths;
+import com.adekah.taskTrackerApp.util.TPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,19 @@ public class ProjectController {
         this.projectServiceImplementation = projectServiceImplementation;
     }
 
+//    @GetMapping("/pagination")
+//    @ApiOperation(value = "Get By Pagination Operation", response = ProjectDto.class)
+//    public ResponseEntity<TPage<ProjectDto>> getAllByPagination(Pageable pageable) {
+//        TPage<ProjectDto> data = projectServiceImplementation.getAllPageable(pageable);
+//        return ResponseEntity.ok(data);
+//    }
+
+    @GetMapping("/pagination")
+    @ApiOperation(value = "Get By Pagination Operation", response = ProjectDto.class)
+    public ResponseEntity<TPage<ProjectDto>> getAllByPagination(Pageable pageable) {
+        TPage<ProjectDto> data = projectServiceImplementation.getAllPageable(pageable);
+        return ResponseEntity.ok(data);
+    }
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Get By Id Operation", response = ProjectDto.class)
