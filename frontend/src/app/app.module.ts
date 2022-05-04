@@ -8,6 +8,7 @@ import {HeaderComponent} from "./_layout/header/header.component";
 import {SidebarComponent} from "./_layout/sidebar/sidebar.component";
 import {BsDatepickerModule, BsDropdownModule, CollapseModule, ModalModule, PaginationModule} from "ngx-bootstrap";
 import {ToastNoAnimation, ToastNoAnimationModule, ToastrModule} from "ngx-toastr";
+import { ApiService } from "./services/api.service";
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import {ToastNoAnimation, ToastNoAnimationModule, ToastrModule} from "ngx-toastr
       autoDismiss: true
     }),
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
