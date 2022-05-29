@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskComponent } from './task.component';
 import { TaskRoutingModule } from './task.routing.module';
+import { TaskService } from 'src/app/services/shared/task.service';
 
 
 
@@ -12,6 +13,7 @@ import { TaskRoutingModule } from './task.routing.module';
   imports: [
     CommonModule,
     TaskRoutingModule
-  ]
+  ],
+  providers:[TaskService]
 })
 export class TaskModule { }

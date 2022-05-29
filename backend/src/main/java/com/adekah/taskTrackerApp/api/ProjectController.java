@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@CrossOrigin
 @RestController
 @RequestMapping(ApiPaths.ProjectController.CTRL)
 @Api(value = ApiPaths.ProjectController.CTRL, description = "Project APIs")
