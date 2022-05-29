@@ -14,4 +14,26 @@
     [limit]="page.size"
     (page)='setPage($event)'>
   </ngx-datatable>
+
+
+
+<button type="button" class="btn btn-primary" (click)="openModal(template)">button</button>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull left">Modal</h4>
+    <button class="close pull-right" type="button" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+  </div>
+  <div class="modal-body">this is a modal</div>
+</ng-template>
+
+
+
+
+
+
+
 </div>

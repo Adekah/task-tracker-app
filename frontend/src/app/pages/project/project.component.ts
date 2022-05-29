@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Page } from 'src/app/common/page';
 import { ProjectService } from 'src/app/services/shared/project.service';
 
@@ -9,6 +10,7 @@ import { ProjectService } from 'src/app/services/shared/project.service';
 })
 export class ProjectComponent implements OnInit {
   page = new Page();
+  modalRef:BsModalRef;
   cols = [
     { prop: 'id', name: 'No' },
     { prop: 'projectName', name: 'Project Name', sortable: false },
@@ -16,11 +18,15 @@ export class ProjectComponent implements OnInit {
   rows = [];
 
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService,private modalService:BsModalService) { }
 
   ngOnInit() {
     this.setPage({ offset: 0 })
 
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
   setPage(pageInfo) {
