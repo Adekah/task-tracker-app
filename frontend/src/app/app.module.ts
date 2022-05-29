@@ -9,8 +9,15 @@ import { SidebarComponent } from "./_layout/sidebar/sidebar.component";
 import { BsDatepickerModule, BsDropdownModule, CollapseModule, ModalModule, PaginationModule } from "ngx-bootstrap";
 import { ToastNoAnimation, ToastNoAnimationModule, ToastrModule } from "ngx-toastr";
 import { ApiService } from "./services/api.service";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+
+
+export const createTranslateLoader = (http: HttpClient) => {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 
 @NgModule({
@@ -24,7 +31,7 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
   imports: [
     BrowserModule,
     HttpClientModule,
-    NgxDatatableModule, 
+    NgxDatatableModule,
     AppRoutingModule,
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),
@@ -37,6 +44,13 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
       maxOpened: 1,
       autoDismiss: true
     }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

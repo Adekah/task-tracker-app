@@ -4,6 +4,7 @@ import { ProjectComponent } from './project.component';
 import { ProjectRoutingModule } from './project.routing.module';
 import { ProjectService } from 'src/app/services/shared/project.service';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -14,7 +15,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
   imports: [
     CommonModule,
     ProjectRoutingModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    SharedModule
   ],
   providers: [ProjectService]
 })
