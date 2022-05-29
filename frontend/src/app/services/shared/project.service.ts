@@ -4,19 +4,19 @@ import { map } from "rxjs/operators";
 
 import { ApiService } from "../api.service";
 
-@Injectable({providedIn: 'root'})
-export class ProjectService{
+@Injectable({ providedIn: 'root' })
+export class ProjectService {
 
-    private PROJECT_PATH="/project";
+    private PROJECT_PATH = "/project";
 
-    constructor(private apiService:ApiService){}
+    constructor(private apiService: ApiService) { }
 
-    getAll(page):Observable<any>{
-        return this.apiService.get(this.PROJECT_PATH+'/pagination',page).pipe(map(
-            response=>{
-                if(response){
+    getAll(page): Observable<any> {
+        return this.apiService.get(this.PROJECT_PATH + '/pagination', page).pipe(map(
+            response => {
+                if (response) {
                     return response;
-                }else{
+                } else {
                     console.log(response);
                     return {};
                 }
@@ -24,12 +24,12 @@ export class ProjectService{
         ));
     }
 
-    getById(id):Observable<any>{
-        return this.apiService.get(this.PROJECT_PATH,id).pipe(map(
-            response=>{
-                if(response){
+    getById(id): Observable<any> {
+        return this.apiService.get(this.PROJECT_PATH, id).pipe(map(
+            response => {
+                if (response) {
                     return response;
-                }else{
+                } else {
                     console.log(response);
                     return {};
                 }
@@ -37,12 +37,12 @@ export class ProjectService{
         ));
     }
 
-    createProject(project):Observable<any>{
-        return this.apiService.post(this.PROJECT_PATH,project).pipe(map(
-            response=>{
-                if(response){
+    createProject(project): Observable<any> {
+        return this.apiService.post(this.PROJECT_PATH, project).pipe(map(
+            response => {
+                if (response) {
                     return response;
-                }else{
+                } else {
                     console.log(response);
                     return {};
                 }
@@ -50,12 +50,12 @@ export class ProjectService{
         ));
     }
 
-    delete(id):Observable<any>{
-        return this.apiService.delete(this.PROJECT_PATH,id).pipe(map(
-            response=>{
-                if(response){
+    delete(id): Observable<any> {
+        return this.apiService.delete(this.PROJECT_PATH + '/' + id).pipe(map(
+            response => {
+                if (response) {
                     return response;
-                }else{
+                } else {
                     console.log(response);
                     return {};
                 }

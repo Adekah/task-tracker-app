@@ -1,39 +1,54 @@
 <div class="content-wrapper">
   <h4>{{'Project List'|translate}}</h4>
-    <ngx-datatable
-    class="bootstrap"
-    [rows]="rows"
-    [columns]="cols"
-    [columnMode]="'force'"
-    [headerHeight]="50"
-    [footerHeight]="50"
-    [rowHeight]="'auto'"
-    [externalPaging]="true"
-    [count]="page.totalElements"
-    [offset]="page.page"
-    [limit]="page.size"
-    (page)='setPage($event)'>
+  <ngx-datatable class="bootstrap" [rows]="rows" [columns]="cols" [columnMode]="'force'" [headerHeight]="50"
+    [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true" [count]="page.totalElements" [offset]="page.page"
+    [limit]="page.size" (page)='setPage($event)'>
   </ngx-datatable>
 
-
-
-<button type="button" class="btn btn-primary" (click)="openModal(template)">button</button>
-
-<ng-template #template>
-  <div class="modal-header">
-    <h4 class="modal-title pull left">Modal</h4>
-    <button class="close pull-right" type="button" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-
+  <div>
+    <button type="button" class="btn btn-primary" (click)="openModal(template)">{{'New Project' | translate}}</button>
   </div>
-  <div class="modal-body">this is a modal</div>
-</ng-template>
 
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{'New Project'| translate }}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="projectForm" (ngSubmit)="saveProject()">
 
+        <div class="form-group">
+          <label>{{'Project Code'|translate}}</label>
+          <input type="text" formControlName="projectCode" class="form-control"
+            [ngClass]="{'is-invalid':f.projectCode.errors}" />
+          <div *ngIf="f.projectCode.errors" class="invalid-feedback">
+            <div *ngIf="f.projectCode.errors.required">{{'Project Code is required'| translate}}</div>
+            <div *ngIf="f.projectCode.errors.minlength">{{'Project Code Should be min 2 char'| translate}}</div>
+          </div>
+        </div>
 
+        <div class="form-group">
+          <label>{{'Project Name'| translate}}</label>
 
+          <input type="text" formControlName="projectName" class="form-control"
+            [ngClass]="{'is-invalid':f.projectName.errors}" />
+          <div *ngIf="f.projectName.errors" class="invalid-feedback">
+            <div *ngIf="f.projectName.errors.required">{{'Project Name is required'| translate}}</div>
+            <div *ngIf="f.projectName.errors.minlenght">{{'Project Name should be min 4 char'| translate}}</div>
+          </div>
+        </div>
 
+        <div class="modal-footer">
+          <button class="btn btn-light" (click)="closeAndResetModal()">{{ 'Close' | translate }}</button>
+          <button class="btn btn-primary">{{ 'Save' | translate }}</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
 
-
+  <ng-template #tplProjectDeleteCell let-row="row" let-value="value">
+    <button (click)="showProjectDeleteConfirmation(value)"><i class="material-icons">delete</i></button>
+  </ng-template>
 </div>
