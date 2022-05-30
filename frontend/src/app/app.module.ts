@@ -13,6 +13,10 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { ProjectService } from "./services/shared/project.service";
+import { TaskService } from "./services/shared/task.service";
+import { UserService } from "./services/shared/user.service";
+import { TaskHistoryService } from "./services/shared/task-history.service";
 
 
 export const createTranslateLoader = (http: HttpClient) => {
@@ -52,7 +56,7 @@ export const createTranslateLoader = (http: HttpClient) => {
       }
     })
   ],
-  providers: [ApiService],
+  providers: [ApiService,ProjectService,TaskService,UserService,TaskHistoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

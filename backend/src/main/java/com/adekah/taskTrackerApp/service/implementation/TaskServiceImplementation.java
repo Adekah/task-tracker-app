@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class TaskServiceImplementation implements TaskService {
@@ -54,6 +55,11 @@ public class TaskServiceImplementation implements TaskService {
     public Boolean delete(Long id) {
         taskRepository.deleteById(id);
         return true;
+
+    }
+    public List<TaskDto> getAll(){
+        List<Task>data=taskRepository.findAll();
+        return Arrays.asList(modelMapper.map(data,TaskDto[].class));
 
     }
 

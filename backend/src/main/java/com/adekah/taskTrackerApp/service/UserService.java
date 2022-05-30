@@ -1,5 +1,6 @@
 package com.adekah.taskTrackerApp.service;
 
+import com.adekah.taskTrackerApp.dto.UserDto;
 import com.adekah.taskTrackerApp.entity.Task;
 import com.adekah.taskTrackerApp.entity.TaskHistory;
 import com.adekah.taskTrackerApp.entity.User;
@@ -8,13 +9,13 @@ import org.springframework.data.domain.Pageable;
 
 public interface UserService {
 
-    User save(User user);
+    UserDto save(UserDto user);
 
-    User getById(Long id);
+    UserDto getById(Long id);
 
     Page<User> getAllPageable(Pageable pageable);
 
-    User getByUserName(String username);
+    UserDto getByUserName(String username);
 
     Boolean delete(User user);
 }
