@@ -2,7 +2,9 @@ package com.adekah.taskTrackerApp.service.implementation;
 
 import com.adekah.taskTrackerApp.dto.ProjectDto;
 import com.adekah.taskTrackerApp.entity.Project;
+import com.adekah.taskTrackerApp.entity.User;
 import com.adekah.taskTrackerApp.repository.ProjectRepository;
+import com.adekah.taskTrackerApp.repository.UserRepository;
 import com.adekah.taskTrackerApp.service.ProjectService;
 import com.adekah.taskTrackerApp.util.TPage;
 import org.modelmapper.ModelMapper;
@@ -18,11 +20,13 @@ public class ProjectServiceImplementation implements ProjectService {
 
     private final ProjectRepository projectRepository;
     private final ModelMapper modelMapper;
+    private final UserRepository userRepository;
 
-    public ProjectServiceImplementation(ProjectRepository projectRepository, ModelMapper modelMapper) {
+    public ProjectServiceImplementation(ProjectRepository projectRepository, ModelMapper modelMapper, UserRepository userRepository) {
         this.projectRepository = projectRepository;
 
         this.modelMapper = modelMapper;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -32,6 +36,11 @@ public class ProjectServiceImplementation implements ProjectService {
             throw new IllegalArgumentException("project code already exist");
         }
         Project p = modelMapper.map(project, Project.class);
+        User user =userRepository.getOne(project.getManagerId());
+        p.setManager(user);
+
+
+
         p = projectRepository.save(p);
         project.setId(p.getId());
         return project;
